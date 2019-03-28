@@ -10,6 +10,9 @@ sql1 = "SELECT ArtistId, Name from artists limit 10"
 url =  "http://localhost:3000/artist/%s/word"
 sql2 = "SELECT Name from tracks where name like '%%%s%%' limit 10"
 
+#
+# This is not async becasue urllib.request.urlopen
+#
 async def fetch(id):
     r = urllib.request.urlopen(url % str(id))
     js = r.read()
@@ -32,7 +35,9 @@ async def work():
 
     tasks = []
     for (id,a) in artists:
-        t = loop.create_task(fetch(id)) #this is synchronous!!!!
+        # t = loop.create_task(fetch(id)) #this is synchronous!!!!
+        co = fetch(id)
+        t = asyncio.create_task(co)
         tasks.append( t )
         t.add_done_callback( lookup )
         print ("searching for " + str(id))
@@ -45,9 +50,9 @@ async def work():
         #
         #
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(work())
-loop.close()
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(work())
+# loop.close()
 
 # or in PYthon 3.7
-# asyncio.run(work())
+asyncio.run(work())

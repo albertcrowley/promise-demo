@@ -99,13 +99,40 @@ function using_promises() {
                     rows.map( r=> console.log (r.Name))
                 })
         })
+}
+
+function no_cheat_promise() {
+    let db = null;
+    promise_sqlite.open(db_file)
+        .then ( _db => {
+            db = _db
+            return db.all(sql1)
+        })
+        .then( rows => {
+            console.log("number of rows returned:", rows.length)
+            for (artist of rows) {
+                const url = url_template.replace(':id', artist.ArtistId)
+//                const ftch = function (url) { return ["Artist":r, "Promise": fetch(url)] }
+
+                Promise.all([fetch(url), artist.Name])
+                    .then( ([result, artist]) => Promise.all( [result.json(), artist]) )
+                    .then( ([json,artist]) => Promise.all( [json.word, artist]))
+                    .then( ([word, artist]) =>Promise.all( [db.all(sql2.replace("WORD", word)), artist])  )
+                    .then( ([rows,artist]) => {
+                        for (r2 of rows) {
+                            console.log ("Artist:", artist, "\tTrack:", r2.Name)
+                        }
+                    } )
+
+            }
+        })
 
 }
 
 
-// using_callbacks()
- cleaner_using_callbacks()
+ // using_callbacks()
+//  cleaner_using_callbacks()
 // using_promises()
-
+no_cheat_promise()
 
 
