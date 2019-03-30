@@ -19,7 +19,7 @@ async def fetch(id):
     session = aiohttp.ClientSession()
     response = await session.get(url % str(id) )
     json = await response.json()
-    session.close()
+    await session.close()
 
     #
     # this old code is not asycn because urllib isn't async!

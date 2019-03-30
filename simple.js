@@ -38,18 +38,21 @@ function calc_pi_async(count) {
     })
 }
 
-let p1 = calc_pi_async(10000)
-let p2 = calc_pi_async(10000)
-let p3 = calc_pi_async(10000)
-let p4 = calc_pi_async(10000)
-
-console.log (p1)
-
-p1.then( pi => console.log("pi is ", pi))
-p2.then( pi => console.log("pi is ", pi))
-p3.then( pi => console.log("pi is ", pi))
-p4.then( pi => console.log("pi is ", pi))
-
+// let p1 = calc_pi_async(100)
+// let p2 = calc_pi_async(50000)
+// let p3 = calc_pi_async(100)
+// let p4 = calc_pi_async(100)
+//
+// console.log (p1)
+//
+// p1.then( pi => console.log("pi1 is ", pi))
+// p2.then( pi => console.log("pi2 is ", pi))
+// p3.then( pi => console.log("pi3 is ", pi))
+// p4.then( pi => console.log("pi4 is ", pi))
+//
+// p1.then( () => {
+//     console.log (p1)
+// })
 
 // p1.then( pi => {
 //     console.log("pi is ", pi)
@@ -60,42 +63,42 @@ p4.then( pi => console.log("pi is ", pi))
 
 
 
-//
-// function calc_pi_async2(count, result_idx, inside=0, i=0 ) {
-//     let loops = 0
-//     for ( ; i < count && loops < 1000 ; i++, loops++) {
-//         let x = Math.random()*2-1;
-//         let y = Math.random()*2-1;
-//         if ((x*x + y*y) < 1) {
-//             inside++
-//         }
-//     }
-//     if (i == count) {
-//        results[result_idx] = 4.0 * inside / i;
-//        done++;
-//     } else {
-//         results[result_idx] = 4.0 * inside / i;
-//         setTimeout(() => calc_pi_async2(count, result_idx, inside, i), 10)
-//     }
-//
-// }
-//
-// let results = []
-// let done = 0
-//
-// calc_pi_async2(5000000,0)
-// calc_pi_async2(1000000,1)
-// calc_pi_async2(100000,2)
-// calc_pi_async2(10000,3)
-// calc_pi_async2(1000,4)
-// calc_pi_async2(100,5)
-// calc_pi_async2(10,6)
-//
-// function print_results() {
-//     console.log (results, "finished", done)
-//     if (done < 7) {
-//         setTimeout(print_results, 1000)
-//     }
-// }
-//
-// print_results()
+
+function calc_pi_async2(count, result_idx, inside=0, i=0 ) {
+    let loops = 0
+    for ( ; i < count && loops < 1000 ; i++, loops++) {
+        let x = Math.random()*2-1;
+        let y = Math.random()*2-1;
+        if ((x*x + y*y) < 1) {
+            inside++
+        }
+    }
+    if (i == count) {
+       results[result_idx] = 4.0 * inside / i;
+       done++;
+    } else {
+        results[result_idx] = 4.0 * inside / i;
+        setTimeout(() => calc_pi_async2(count, result_idx, inside, i), 10)
+    }
+
+}
+
+let results = []
+let done = 0
+
+calc_pi_async2(5000000,0)
+calc_pi_async2(1000000,1)
+calc_pi_async2(100000,2)
+calc_pi_async2(10000,3)
+calc_pi_async2(1000,4)
+calc_pi_async2(100,5)
+calc_pi_async2(10,6)
+
+function print_results() {
+    console.log (results, "finished", done)
+    if (done < 7) {
+        setTimeout(print_results, 1000)
+    }
+}
+
+print_results()
