@@ -1,7 +1,7 @@
 const sqlite = require('sqlite')
 const db_file = 'chinook.db'
 
-const password = "fjehjdie23!"
+const password = "23Hilltop!"
 
 const express = require('express'),
     app = express(),
