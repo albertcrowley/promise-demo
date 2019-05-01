@@ -1,0 +1,29 @@
+{
+  "name": "promise-demo",
+  "version": "1.0.0",
+  "description": "Demo code for a Promise/Future presentation",
+  "main": "fetching.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.3.0",
+    "node-sqlite": "0.0.2-security",
+    "nodemon": "^1.18.10",
+    "sqlite": "^3.0.3",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertcrowley/promise-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albertcrowley/promise-demo/issues"
+  },
+  "homepage": "https://github.com/albertcrowley/promise-demo#readme"
+}
